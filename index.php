@@ -30,9 +30,52 @@
 				<div class="form-group">
 					<input type="date" class="form-control" name="depDate" placeholder="Departuredate">
 				</div>
-				<button type="button" class="btn btn-sm" id="submit">Look Up</button>
+				<!-- Button trigger modal -->
+				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#FlightsTo">
+				  Look Up
+				</button>
 			</form>
 		</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="FlightsTo" tabindex="-1" role="dialog" aria-labelledby="FlightsToLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="FlightsToLabel">Flights To</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+		<div class="fare-infos">
+	        <table class="table table-striped">
+	        	<thead>
+	        		<tr>
+	        			<td>Airline Code</td>
+	        			<td>Airline Name</td>
+	        			<td>Alternate Business Name</td>
+	        		</tr>
+	        	</thead>
+	        	<tbody>
+	        		<tr v-for="airline in AirlineInfo">
+	        			<td><span class="AC">{{airline.AirlineCode}}</span></td>
+	        			<td><span class="AN">{{airline.AirlineName}}</span></td>
+	        			<td><span class="ABN">{{airline.AlternativeBusinessName}}</span></td>
+	        		</tr>
+	        	</tbody>
+	        </table>
+		</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <hr>
 <!-- Button trigger modal -->
@@ -52,7 +95,7 @@
       </div>
       <div class="modal-body">
 		<div class="airlines">
-	        <table class="table  table-striped">
+	        <table class="table table-striped">
 	        	<thead>
 	        		<tr>
 	        			<td>Airline Code</td>
