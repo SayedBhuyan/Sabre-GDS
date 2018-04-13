@@ -1,6 +1,6 @@
 $.ajaxSetup({
 	headers: {
-		"Authorization": "Bearer T1RLAQLfXtLZSOj7tFCNpSYdmcrTFLiqXhDKM5bNUJwAqlWQiL5/Qr2cAADAKYNq3WBXlpIhUaXeR4U5ZtFPi5MB1pSRtY/6inv445itGiQOeZURIrt+ejXVw+CBr2qnhveYCzr+g4lOR7oat5/cnfC3dHlEulfKLY2YFmBHeq++VW8/orKPzHBntot6uOD25QH3VELi2MgWCGfdDPUoLravielehpeNbRMwcwB2V5OszSXTvrjQ54cRA+mUYDPdPKunaJhF9cylKo2/bxwlQpKEQIWYPU+/1gUfdz2eBs9TZMxkRUVsMDtHtZn6",
+		"Authorization": "Bearer " + "T1RLAQLs/lXywKQuY9bLOgnMsojnz2QcYhAM+RtmnWUM6XeEpdVC49NzAADA63XXSavD3wTM1tbPvzx8nJR6Ka15UPMTXjBevn9mhxLKDrBXubwRR/3iHsQkDxeoXykkfuD36eH/VkgVKZm9s74n7hlyNK+rurr8ZnI9ajUkwEtXQAk7JObOXwf38K6FIPHhjik0o/Ff3I4oNWCknb1IRi9UneCNnru0US2fsfWk8cQCWVJmSmat4bezaAD/B4/4m9SGHyroEFch0hiAj/Xmm5eNnqeYtVwmLiGu463TD+JmRdDuo2YYpMChxqRO",
 		"X-Originating-Ip": "71.57.132.86"
 	}
 });
@@ -26,7 +26,23 @@ function sabreFlightsTo(data) {
 	});
 }
 
-
+var app = new Vue({
+  el: '#app',
+  data: {
+    AirlineInfo: []
+  },
+  methods: {
+  	AirlineLookup: function() {
+		// Airline Lookup
+			$.ajax({
+				url: "https://api.test.sabre.com/v1/lists/utilities/airlines",
+				success: function(data) {
+					app.AirlineInfo = data.AirlineInfo;
+				}
+			});
+  	}
+  }
+})
 
 function tojson(search) {
 	return JSON.parse('{"' + decodeURI(search).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g,'":"') + '"}');
