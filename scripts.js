@@ -5,24 +5,6 @@ $.ajaxSetup({
 	}
 });
 
-
-
-
-
-// function sabreFlightsTo(data) {
-// 	data = tojson(data);
-// 	var destination = data.to;
-// 	var pointofsalecountry = data.from
-// 	console.log(destination);
-// 	console.log(pointofsalecountry);
-// 	$.ajax({
-// 		url: "https://api.test.sabre.com/v1/shop/flights/cheapest/fares/"+destination+"?pointofsalecountry="+pointofsalecountry,
-// 		success: function(data) {
-// 			console.log(data);
-// 		}
-// 	});
-// }
-
 var app = new Vue({
   el: '#app',
   data: {
