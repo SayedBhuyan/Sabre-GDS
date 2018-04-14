@@ -2,8 +2,7 @@ $.ajaxSetup({
 	headers: {
 		"Authorization": "Bearer " + "T1RLAQL9klzugnIJN1aMM22F5RjYGERQiBDQ+wZndGAG1/ibl6ohBWLLAADAS6/K7LO2LJhHnyF0RHmkeodDckgEicBqeTc+lSYdn/6/j0kwp3ZB1kcndjMjwwsJVlmg1MmL/iII/ih6PBkJ5BzHiqjNB6/q034V01zM0yneNjEtS59OPDNkxDMC5vdK7IrWX3PIDtUgDZ4R5t6ZBAARLypvzI8K0yjfobS5URmjPy505LqqW+cr6iZjniDBZXLyUk/0tSl7HgUJe6YShtYPUcrJt5m6Xxcw5tTc7zV4wr3Xhopmhm9MoWehon5r",
 		"X-Originating-Ip": "71.57.132.86"
-	},
-	crossDomain: true
+	}
 });
 
 
