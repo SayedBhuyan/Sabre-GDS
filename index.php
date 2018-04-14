@@ -4,6 +4,7 @@
 	<meta charset="UTF-8">
 	<title>Sabre API</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+	<link rel="stylesheet" href="style.css">
 </head>
 <body>
 	
@@ -54,19 +55,22 @@
 	        <table class="table table-striped">
 	        	<thead>
 	        		<tr>
-	        			<td>Airline Code</td>
-	        			<td>Airline Name</td>
-	        			<td>Alternate Business Name</td>
+	        			<td>Airlines Code</td>
+	        			<td>DepartureDateTime</td>
+	        			<td>ReturnDateTime</td>
+	        			<td>Fare</td>
 	        		</tr>
 	        	</thead>
 	        	<tbody>
-	        		<tr v-for="airline in AirlineInfo">
-	        			<td><span class="AC">{{airline.AirlineCode}}</span></td>
-	        			<td><span class="AN">{{airline.AirlineName}}</span></td>
-	        			<td><span class="ABN">{{airline.AlternativeBusinessName}}</span></td>
+	        		<tr v-for="FareInfo in FareInfos">
+	        			<td><span class="AC"><span v-for="AirlineCode in FareInfo.LowestFare.AirlineCodes"> [{{ AirlineCode }}] </span></span></td>
+	        			<td><span class="DDT">{{FareInfo.DepartureDateTime}}</span></td>
+	        			<td><span class="RDT">{{FareInfo.ReturnDateTime}}</span></td>
+	        			<td><span class="FARE">{{FareInfo.LowestFare.Fare}} {{ FareInfo.CurrencyCode }}</span></td>
 	        		</tr>
 	        	</tbody>
 	        </table>
+			<img class="img-center" v-if="loading" src="img/loading.gif" alt="Loading...">
 		</div>
       </div>
       <div class="modal-footer">
@@ -111,6 +115,7 @@
 	        		</tr>
 	        	</tbody>
 	        </table>
+	        <img class="img-center" v-if="loading" src="img/loading.gif" alt="Loading...">
 		</div>
       </div>
       <div class="modal-footer">

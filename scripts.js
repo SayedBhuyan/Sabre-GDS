@@ -1,8 +1,9 @@
 $.ajaxSetup({
 	headers: {
-		"Authorization": "Bearer " + "T1RLAQKCMNs02EnPWWr8T8RLLf7erYr64hBZWMn5tH5qdeTRz+dtTIv+AADAgR21FhEgEMU8Kj+LWV6kRk32hoH7Bx2Y7v29rMWcegoskw8fwWVRECmxqxG6F1J0/JCyUzYc7l8m8MacTLpikiMOhi71hLb+cBxehcgWKEcLmY09TcxPzh5vKWTIWw14SqeKIrflhFJq9ZU3RKtcUx924hE/sdfMgE7YoykUK4dxTexOVdVtyYTEg2lLi9DHCzu9Gnwl6K8m6JXN6Sj7seIya2KyF0lprtQp7Z6qbPfDPc8y09XQE2QUXRELcCOI",
+		"Authorization": "Bearer " + "T1RLAQL9klzugnIJN1aMM22F5RjYGERQiBDQ+wZndGAG1/ibl6ohBWLLAADAS6/K7LO2LJhHnyF0RHmkeodDckgEicBqeTc+lSYdn/6/j0kwp3ZB1kcndjMjwwsJVlmg1MmL/iII/ih6PBkJ5BzHiqjNB6/q034V01zM0yneNjEtS59OPDNkxDMC5vdK7IrWX3PIDtUgDZ4R5t6ZBAARLypvzI8K0yjfobS5URmjPy505LqqW+cr6iZjniDBZXLyUk/0tSl7HgUJe6YShtYPUcrJt5m6Xxcw5tTc7zV4wr3Xhopmhm9MoWehon5r",
 		"X-Originating-Ip": "71.57.132.86"
-	}
+	},
+	crossDomain: true
 });
 
 
@@ -27,7 +28,9 @@ var app = new Vue({
   el: '#app',
   data: {
   	FareInfos: [],
-    AirlineInfo: []
+  	AirlineCodes: [],
+    AirlineInfo: [],
+    loading: false
   },
   methods: {
   	FlightsTo: function(data) {
@@ -39,6 +42,12 @@ var app = new Vue({
 			url: "https://api.test.sabre.com/v1/shop/flights/cheapest/fares/"+destination+"?pointofsalecountry="+pointofsalecountry,
 			success: function(data) {
 				app.FareInfos = data.FareInfo;
+			},
+			beforeSend: function() {
+				app.loading = true;
+			},
+			complete: function() {
+				app.loading = false;
 			}
 		});
   	},
@@ -48,7 +57,14 @@ var app = new Vue({
 				url: "https://api.test.sabre.com/v1/lists/utilities/airlines",
 				success: function(data) {
 					app.AirlineInfo = data.AirlineInfo;
-				}
+				},
+				beforeSend: function() {
+					app.loading = true;
+				},
+				complete: function() {
+					app.loading = false;
+				},
+
 			});
   	}
   }
